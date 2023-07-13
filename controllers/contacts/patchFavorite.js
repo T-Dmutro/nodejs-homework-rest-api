@@ -23,6 +23,4 @@ async function patchFavorite(req, res, next) {
     return next(error);
   }
 }
-module.exports = {
-  patchFavorite,
-};
+module.exports =  patchFavorite;

@@ -1,9 +1,10 @@
 const express = require("express");
 // імпорт контролерра
-// const ContactController = require("../../controllers/index");
-const { getContacts, getContactId, createContact, deleteContact, putContact, patchFavorite } = require("../../controllers/index");
 // маршрутизація
 const router = express.Router();
+// const ContactController = require("../../controllers/index");
+const { getContacts, getContactId, creatreContact, deleteContact, putContact, patchFavorite } = require("../../controllers/index");
+
 // змінна для парсингу json
 const jsonParsers = express.json();
 // отримання всіх контактів
@@ -11,7 +12,7 @@ router.get("/", getContacts);
 // отримання контакта по id
 router.get("/:contactId", getContactId)
 // додавання контакту
-router.post("/", jsonParsers, createContact);
+router.post("/", jsonParsers, creatreContact);
 // видалення контакту
 router.delete("/:contactId", deleteContact);
 // оновлення даних в контакті

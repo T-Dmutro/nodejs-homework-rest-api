@@ -14,4 +14,4 @@ async function deleteContact(req, res, next) {
     return next(error);
   }
 };
-module.exports = {deleteContact};
+module.exports = deleteContact;

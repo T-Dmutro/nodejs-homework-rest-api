@@ -1,7 +1,7 @@
 const {
   getContacts,
   getContactId,
-  createContact,
+  creatreContact,
   deleteContact,
   putContact,
   patchFavorite,
@@ -9,7 +9,7 @@ const {
 module.exports = {
   getContacts,
   getContactId,
-  createContact,
+  creatreContact,
   deleteContact,
   putContact,
   patchFavorite,

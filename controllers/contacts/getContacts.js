@@ -9,4 +9,4 @@ async function getContacts(__, res, next) {
     return next((error) => res.status(500).send(error));
   }
 }
-module.exports = {getContacts};
+module.exports = getContacts;

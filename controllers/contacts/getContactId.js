@@ -19,4 +19,4 @@ async function getContactId(req, res, next) {
       res.status(404).json({ message: "Not found" });
     }
   }
-  module.exports = {getContactId}
+  module.exports = getContactId
