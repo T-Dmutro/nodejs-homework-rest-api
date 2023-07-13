@@ -3,6 +3,8 @@ const path = require("node:path");
 const logger = require("morgan");
 const cors = require("cors");
 
+require("./db");
+
 const contactsRouter = require("./routes/api/contacts");
 
 const morgan = require("morgan");
