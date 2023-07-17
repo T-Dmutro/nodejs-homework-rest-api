@@ -5,7 +5,7 @@ async function putContact(req, res, next) {
   const { contactId } = req.params;
   const { name, email, phone, favorite } = req.body;
   try {
-    const result = await Contact.findByIdAndUpdate(contactId, {
+    const result = await Contact.findByIdAndUpdate({ _id: contactId, ownerId: req.user.contactId }, {
       name,
       email,
       phone,

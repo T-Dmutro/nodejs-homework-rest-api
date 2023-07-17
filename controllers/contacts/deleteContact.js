@@ -2,9 +2,13 @@ const Contact = require("../../models/moongoseSchema");
 
 // видалення контакту
 async function deleteContact(req, res, next) {
+
   try {
     const { contactId } = req.params;
-    const result = await Contact.findByIdAndRemove(contactId);
+    const result = await Contact.findOneAndRemove({
+      _id: contactId,
+      ownerId: req.user.id,
+    });
     if (result === null) {
       return res.status(404).json({ message: "Contact not found" });
     }

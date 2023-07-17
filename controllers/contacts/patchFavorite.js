@@ -8,9 +8,10 @@ async function patchFavorite(req, res, next) {
     return res.status(400).json({ message: "missing field favorite" });
   }
   console.log(`id : ${contactId}, favorite: ${favorite}`);
+
   try {
     const result = await Contact.findOneAndUpdate(
-      { _id: contactId },
+      { _id: contactId, ownerId: req.user.id},
       { favorite },
       { new: true }
     );
