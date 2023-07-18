@@ -11,8 +11,12 @@ const {
   logout,
   registered,
   current,
-  subscription
+  subscription,
 } = require("./auth/index");
+const{
+  uploadAvatar,
+  getById,
+}= require("./users/index")
 module.exports = {
   getContacts,
   getContactId,
@@ -24,5 +28,7 @@ module.exports = {
   logout,
   registered,
   current,
-  subscription
+  subscription,
+  uploadAvatar,
+  getById,
 };
