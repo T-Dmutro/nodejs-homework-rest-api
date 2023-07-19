@@ -13,7 +13,7 @@ const {
   current,
   subscription,
 } = require("./auth/index");
-const{
+const {
   uploadAvatar,
   getById,
 }= require("./users/index")

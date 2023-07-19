@@ -1,23 +1,33 @@
+
 const User = require("../../models/usersSchema");
+const path = require("node:path");
+const fs = require("fs/promises");
+const crypto = require("node:crypto");
+const Jimp = require("jimp");
+
+const avatarDir = path.join(__dirname, "../../", "public", "avatars");
 async function uploadAvatar(req, res, next) {
-  const { id } = req.params;
+  const { id } = req.user;
+  const { path: tempUpload, originalname } = req.file;
+
+  const uniqueSuffix = crypto.randomUUID();
+  const ext = path.extname(originalname);
+  const baseName = path.basename(originalname, ext);
+  const imageName = `${baseName}-${uniqueSuffix}${ext}`;
 
   try {
-    const user = await User.findByIdAndUpdate(
-      id,
-      { avatar: req.file.filename },
-      { new: true }
-    ).select({ name: 1, email: 1, avatar: 1 });
+    const resultUpload = path.join(avatarDir, imageName);
 
-    if (user === null) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    return res.json(user);
+    await fs.rename(tempUpload, resultUpload);
+    const avatarURL = path.join("public", "avatars", imageName);
+    await User.findByIdAndUpdate(id, { avatarURL });
+    Jimp.read(avatarURL, (err, img) => {
+      if (err) throw err;
+      img.resize(250, 250);
+    });
+    res.json({ avatarURL });
   } catch (error) {
     return next(error);
   }
 }
-module.exports = {
-  uploadAvatar,
-};
+module.exports = uploadAvatar;

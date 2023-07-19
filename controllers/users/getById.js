@@ -19,6 +19,4 @@ async function getById(req, res, next) {
     return next(error);
   }
 }
-module.exports = {
-  getById,
-};
+module.exports = getById;
