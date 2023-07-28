@@ -23,12 +23,23 @@ const userSchema = new mongoose.Schema(
       avatar: {
         type: String,
         default: null,
-      }
+      },
+    
+        verify: {
+          type: Boolean,
+          default: false,
+        },
+        verificationToken: {
+          type: String,
+          default: null,
+        },
+      
   },
   {
     versionKey: false,
     timestamps: true,
-  }
+  },
+
 );
 
 module.exports = mongoose.model("Users", userSchema);
