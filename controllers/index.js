@@ -5,6 +5,7 @@ const {
   deleteContact,
   putContact,
   patchFavorite,
+  
 } = require("./contacts/index");
 const {
   login,
@@ -12,6 +13,8 @@ const {
   registered,
   current,
   subscription,
+  verifyToken,
+  sendVerifyLeter
 } = require("./auth/index");
 const {
   uploadAvatar,
@@ -20,6 +23,8 @@ const {
 module.exports = {
   getContacts,
   getContactId,
+  verifyToken,
+  sendVerifyLeter,
   creatreContact,
   deleteContact,
   putContact,

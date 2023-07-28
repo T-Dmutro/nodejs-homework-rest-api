@@ -2,6 +2,8 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../models/usersSchema");
 
+// const crypto = require ( 'crypto' );
+
 const JWT_SECRET = process.env.JWT_SECRET;
 
 function auth(req, res, next) {
@@ -35,8 +37,10 @@ function auth(req, res, next) {
       if (user === null) {
         return res.status(401).json({ message: "Not authorized" });
       }
-
-      req.user = { id: user._id, email: user.email,  subscription: user. subscription };
+      if (user.verify !== true) {
+        return res.status(401).json({ error: "Token Expired" });
+      }
+      req.user = { id: user._id, email: user.email,  subscription: user. subscription, verificationToken: user.verificationToken, verify: user.verify };
       console.log({ id: user._id, email: user.email, subscription: user. subscription });
       next();
     } catch (error) {
